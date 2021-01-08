@@ -6,7 +6,7 @@ import { actionTypes } from '../actions/index'
  * @param {object} action - action to be reduced
  * @returns {array} - new guessedWords state
  */
-export default (state=[], action) => {
+const guessedWordsReducer = (state=[], action) => {
     switch(action.type) {
         case actionTypes.GUESS_WORD:
             return [...state, action.payload];
@@ -14,3 +14,5 @@ export default (state=[], action) => {
             return state;
     }
 }
+
+export default guessedWordsReducer

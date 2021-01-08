@@ -6,7 +6,7 @@ export class UnconnectedInput extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { currentGuess: null }
+        this.state = { currentGuess: "" }
         this.submitGuessedWord = this.submitGuessedWord.bind(this)
     }
     
@@ -16,6 +16,7 @@ export class UnconnectedInput extends Component {
         const guessedWord = this.state.currentGuess;
         if (guessedWord && guessedWord.length > 0) {
             this.props.guessWord(guessedWord)
+            this.setState({ currentGuess: "" })
         }
     }
 
@@ -28,11 +29,11 @@ export class UnconnectedInput extends Component {
                 <input data-test="input-box"
                     className="mb-2 mx-sm-3"
                     type="text"
+                    value={this.state.currentGuess}
+                    onChange={(e) => this.setState({ currentGuess: e.target.value })}
                     placeholder="enter guess"/>
                 <button 
                     onClick={this.submitGuessedWord}
-                    value={this.state.curretGuess}
-                    onChange={(e) => this.setState({ currentGuess: e.target.value })}
                     data-test="input-button"
                     type="submit"
                     className="btn btn-primary mb-2">
